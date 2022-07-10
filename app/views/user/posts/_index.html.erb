@@ -1,0 +1,41 @@
+
+<table style="width: 100%">
+  <tbody>
+    <% posts.each do |post| %>
+    <tr>
+      <td>
+        <%= link_to post_path(post.id) do %>
+          <h4><%= post.restaurant_name %></h4>
+        <% end %>
+        <% tag_list.each do |list|%>
+          <%=list.name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 80%">
+        <%= image_tag post.get_image[0], size: "250x200" %>
+      </td>
+      <td style="width: 500px">
+        <%= post.description %>
+      </td>
+    </tr>
+    <tr class="justify-content-end">
+      <td style="width: 50%">
+      </td>
+      <td align="right" style="width: 50%">
+        <%= "#{post.post_comments.count} コメント" %>
+        <%= "#{post.favorites.count}いいね" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= link_to (post.user) do %>
+          <%= image_tag post.user.get_profile_image(100,100) %>
+          <%= post.user.name %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
