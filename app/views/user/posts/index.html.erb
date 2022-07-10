@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 mt-4">
+      <div class="icon">
+        <%= link_to new_post_path, class: "btn pull-right" do %>
+          <i class="fas fa-duotone fa-circle-plus fa-2x"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6 mt-4 col-md-offset-3">
+      <h4>新着一覧</h4>
+    </div>
+    <div class= "row text-center">
+    <%= render 'index', posts: @posts, user: @user, tag_list: @tag_list %>
+    </div>
+  </div>
+</div>
+
+

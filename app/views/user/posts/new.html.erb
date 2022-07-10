@@ -1,0 +1,24 @@
+<h4>新規投稿</h4>
+<div>
+  <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+    <div>
+      <%= f.label :restaurant_name, '店名' %>
+      <%= f.text_field :restaurant_name %>
+    </div>
+    <div>
+      <%= f.label :images, '画像' %>
+      <%= f.file_field :images, multiple: true, accept: "image/*" %>
+    </div>
+    <div>
+      <%= f.label :description, '紹介文' %>
+      <%= f.text_area :description %>
+    </div>
+    <div>
+      <%= f.label :tag  %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.submit "投稿する" %>
+    </div>
+  <% end %>
+</div>

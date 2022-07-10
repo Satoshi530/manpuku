@@ -1,0 +1,23 @@
+<h4>投稿編集</h4>
+<div>
+  <%= form_with model: @post, url: post_path, method: :patch do |f| %>
+    <div>
+      <%= f.label :restaurant_name, '店名' %>
+      <%= f.text_field :restaurant_name %>
+    </div>
+    <div>
+      <%= f.label :images, '画像' %>
+      <%= f.file_field :images, multiple: true, accept: "image/*" %>
+    </div>
+    <div>
+      <%= f.label :description, '紹介文' %>
+      <%= f.text_area :description %>
+    </div>
+    <div>
+      <%= f.hidden_field :post_id, :value => @post.id %>
+    </div>
+    <div>
+      <%= f.submit "保存する" %>
+    </div>
+  <% end %>
+</div>
