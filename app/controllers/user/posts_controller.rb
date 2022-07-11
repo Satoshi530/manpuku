@@ -24,18 +24,24 @@ class User::PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    @tag_list=Tag.all
+    @tag_list =Tag.all
 
   end
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list=@post.tags.pluck(:name).join(',')
   end
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to post_path
+    tag_list=params[:post][:name].split(',')
+    if @post.update(post_params)
+      @post.save_tag(tag_list)
+      redirect_to post_path
+    else
+      render:edit
+    end
   end
 
   def destroy
@@ -46,6 +52,6 @@ class User::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:restaurant_name, :description, images: [])
+    params.require(:post).permit(:restaurant_name, :description, :rate, images: [])
   end
 end

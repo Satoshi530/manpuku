@@ -14,7 +14,8 @@
       <%= f.text_area :description %>
     </div>
     <div>
-      <%= f.hidden_field :post_id, :value => @post.id %>
+      <%= f.label:tag %>
+      <%= f.text_field :name,value: @tag_list%>
     </div>
     <div>
       <%= f.submit "保存する" %>

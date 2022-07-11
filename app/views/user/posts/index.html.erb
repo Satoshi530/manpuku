@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row">
+    <div class="search-form">
+      <%= render 'user/searches/form' %>
+    </div>
     <div class="col-md-5 mt-4">
       <div class="icon">
         <%= link_to new_post_path, class: "btn pull-right" do %>
@@ -11,7 +14,7 @@
       <h4>新着一覧</h4>
     </div>
     <div class= "row text-center">
-    <%= render 'index', posts: @posts, user: @user, tag_list: @tag_list %>
+    <%= render 'index', posts: @posts, user: @user %>
     </div>
   </div>
 </div>

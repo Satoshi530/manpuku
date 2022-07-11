@@ -7,8 +7,8 @@
         <%= link_to post_path(post.id) do %>
           <h4><%= post.restaurant_name %></h4>
         <% end %>
-        <% tag_list.each do |list|%>
-          <%=list.name %>
+        <% post.tags.each do |tag|%>
+          <%= link_to tag.name, searches_path(word: tag.name, range:"Tag") %>
         <% end %>
       </td>
     </tr>

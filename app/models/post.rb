@@ -20,7 +20,7 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def save_tag(sent_tags)
     # 既存のタグがあれば全て名前で配列
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
@@ -38,6 +38,14 @@ class Post < ApplicationRecord
     new_tags.each do |new|
       new_post_tag = Tag.find_or_create_by(name: new)
       self.tags << new_post_tag
+    end
+  end
+
+  def self.looks(word)
+    if word != ""
+      Post.where('restaurant_name LIKE ?', '%'+word+'%')
+    else
+      Post.all
     end
   end
 end
