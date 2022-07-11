@@ -25,6 +25,24 @@
               <td>
                 <%= @post.description %>
               </td>
+              <td>
+                <div class="relative-post-evaluation">
+                  <span>満足度：</span>
+                  <span id="star-rate-<%= @post.id %>"></span>
+                  <script>
+                    $('#star-rate-<%= @post.id %>').raty({
+                      size: 36,
+                      starOff: "<%= asset_path('star-off.png') %>",
+                      starOn: "<%= asset_path('star-on.png') %>",
+                      starHalf: "<%= asset_path('star-half.png') %>",
+                      half: true,
+                      readOnly: true,
+                      score: "<%= @post.rate %>",
+                    });
+                  </script>
+                  <%= @post.rate %>
+                </div>
+              </td>
             </tr>
             <tr>
               <td>

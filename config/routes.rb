@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 }
 get '/about' => 'user/homes#about'
 
+  namespace :admin do
+    resources :users, only:[:show, :index, :edit, :update]
+    resources :tags, only:[:index, :edit, :update, :destroy]
+  end
+
   scope module: :user do
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
@@ -22,5 +27,6 @@ get '/about' => 'user/homes#about'
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
+    get 'searches' => 'searches#search'
   end
 end

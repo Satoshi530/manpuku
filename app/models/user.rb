@@ -23,7 +23,7 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def follow(user)
     relationships.create(followed_id: user.id)
   end
@@ -34,5 +34,13 @@ class User < ApplicationRecord
 
   def following?(user)
     followings.include?(user)
+  end
+
+  def self.looks(word)
+    if word != ""
+      User.where('name LIKE ?', '%'+word+'%')
+    else
+      User.all
+    end
   end
 end

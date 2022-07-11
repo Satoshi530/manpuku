@@ -13,8 +13,21 @@
       <%= f.label :description, '紹介文' %>
       <%= f.text_area :description %>
     </div>
+    <div class="field" id="star">
+      <%= f.label :rate, "満足度" %>
+      <script>
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'post[rate]',
+          half: true,
+        });
+      </script>
+    </div>
     <div>
-      <%= f.label :tag  %>
+      <%= f.label :関連タグ  %>
       <%= f.text_field :name %>
     </div>
     <div>

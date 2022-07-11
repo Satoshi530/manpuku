@@ -22,29 +22,4 @@
 </div>
 
 <h4>投稿一覧</h4>
-<table>
-  <% @posts.each do |post| %>
-  <tr>
-    <td>
-      <%= link_to post_path(post.id) do %>
-        <%= post.restaurant_name %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <%= image_tag post.get_image[0] %>
-    </td>
-    <td>
-      <%= post.description %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <%= link_to (post.user) do %>
-        <%= post.user.name %>
-      <% end %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+<%= render 'user/posts/index_without_detail', posts: @posts %>
