@@ -1,0 +1,3 @@
+enums:
+    contact:
+      subject: "件名"

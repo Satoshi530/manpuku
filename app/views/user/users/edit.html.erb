@@ -1,7 +1,7 @@
 <h4>ユーザー情報編集</h4>
 <div>
   <%= form_with model: @user, url: user_path, method: :patch do |f| %>
-  
+
     <div>
       <%= f.label :name, '名前' %>
       <%= f.text_field :name, autofocus: true %>
@@ -15,6 +15,7 @@
     </div>
     <div>
       <%= f.submit "変更を保存" %>
+      <%= link_to "退会する", unsubscribe_path %>
     </div>
   <% end %>
 </div>

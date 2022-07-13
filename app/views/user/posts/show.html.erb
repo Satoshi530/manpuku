@@ -6,7 +6,7 @@
       </div>
       <div>
         <% @post_tags.each do |tag|%>
-          <%=tag.name %>
+          <%= link_to tag.name, searches_path(word: tag.name, range:"Tag") %>
         <% end %>
       </div>
       <div>
@@ -70,5 +70,3 @@
     </div>
   </div>
 </div>
-
-

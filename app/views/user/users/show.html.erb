@@ -1,25 +1,31 @@
-<div>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <h4><%= @user.name %></h4>
-  <%= @user.introduction %>
-</div>
-<div>
-  <% if @user == current_user %>
-    <%= link_to "編集する", edit_user_path %>
-  <% else %>
-    <div id="follow">
-      <%= render 'user/relationships/follow_button', user: @user %>
-    </div>
-  <% end %>
-</div>
-<div>
-  <%= link_to user_followings_path(@user) do %>
-    <p>フォロー:<%= @user.followings.count %>人</p>
-  <% end %>
-  <%= link_to user_followers_path(@user) do %>
-    <p>フォロワー:<%= @user.followers.count %>人</p>
-  <% end %>
-</div>
+<% if @user.is_deleted == false %>
+  <div>
+    <%= image_tag @user.get_profile_image(100,100) %>
+    <h4><%= @user.name %></h4>
+    <%= @user.introduction %>
+  </div>
+  <div>
+    <% if @user == current_user %>
+      <%= link_to "編集する", edit_user_path %>
+    <% else %>
+      <div id="follow">
+        <% if user_signed_in? %>
+          <%= render 'user/relationships/follow_button', user: @user %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to user_followings_path(@user) do %>
+      <p>フォロー:<%= @user.followings.count %>人</p>
+    <% end %>
+    <%= link_to user_followers_path(@user) do %>
+      <p>フォロワー:<%= @user.followers.count %>人</p>
+    <% end %>
+  </div>
 
-<h4>投稿一覧</h4>
-<%= render 'user/posts/index_without_detail', posts: @posts %>
+  <h4>投稿一覧</h4>
+  <%= render 'user/posts/index_without_detail', posts: @posts %>
+<% else %>
+  <p>このユーザーは退会済みです</p>
+<% end %>

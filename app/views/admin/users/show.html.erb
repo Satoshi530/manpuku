@@ -1,37 +1,69 @@
 <div class="container">
   <div class="row">
-    <div class="heading">
-      <h4>ユーザー詳細</h4>
+    <div class="heading mt-3">
+      <h4 class="text-center">ユーザー詳細</h4>
     </div>
-    <table>
-      <tr>
-        <td><%= image_tag @user.get_profile_image(100,100) %></td>
-      </tr>
-      <tr>
-        <td>ユーザーID</td>
-        <td>@user.id</td>
-      </tr>
-      <tr>
-        <td>ユーザー名</td>
-        <td>@user.name</td>
-      </tr>
-      <tr>
-        <td>ユーザーステータス</td>
-        <td>
-          <%= if @user.is_deleted == false %>
-            <p>有効</p>
-          <%= else %>
-            <p>退会</p>
-          <% end %>
-        </td>
-      </tr>
+  </div>
+  <div class="row">
+    <div class="col-lg-5 text-center">
+      <%= image_tag @user.get_profile_image(150,100) %>
+    </div>
+    <table class="table col-7 text-center">
+      <thead class="bg-info text-light" >
+        <tr>
+          <th>ユーザーID</th>
+          <th>ユーザー名</th>
+          <th>ユーザーステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= @user.id %>
+          </td>
+          <td>
+            <%= @user.name %>
+          </td>
+          <td>
+            <% if @user.is_deleted == false %>
+              <p>有効</p>
+            <% else %>
+              <p>退会</p>
+            <% end %>
+          </div>
+          </td>
+        </tr>
+      </tbody>
     </table>
-    <div>
-      <%= link_to "編集する", edit_admin_user_path(@user) %>
+    <div class="row col-12 justify-content-end text-right">
+      <div class="col-3">
+      <%= link_to "編集する", edit_admin_user_path(@user), class: "btn btn-info" %>
+      </div>
     </div>
-    <div>
-      <h4><%= @user.name %>さんの投稿一覧</h4>
-      <%= render '/user/posts/index_without_detail', posts: @posts %>
+    <h4><%= @user.name %>さんの投稿</h4>
+    <div class="row">
+      <table>
+        <% @posts.each do |post| %>
+        <tr class="border-top">
+          <td class="col-4">
+            <%= link_to admin_post_path(post.id) do %>
+             <strong><%= post.restaurant_name %></strong>
+            <% end %>
+          </td>
+          <td class="col-8 text-right">
+            <p>投稿日時:<%= post.created_at.strftime('%Y/%m/%d') %></p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= image_tag post.get_image[0], size: "300x200" %>
+          </td>
+          <td class="mx-auto">
+            <%= post.description %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>
