@@ -43,4 +43,10 @@ class User < ApplicationRecord
       User.all
     end
   end
+
+  #退会済みアカウントでログインできないように制限
+  def active_for_authentication?
+  #is_deletedがfalseならtrueを返すように設定
+    super && (is_deleted == false)
+  end
 end

@@ -1,0 +1,22 @@
+<h4>タグ一覧</h4>
+ <table>
+  <thead>
+    <tr class="table-active">
+      <th style="width: 60%">タグ</th>
+      <th style="width: 40%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td class="text-left">
+          <%= tag.name %>
+        </td>
+        <td>
+          <%= link_to "編集する", edit_admin_tag_path(tag), class: "btn btn-success ml-3" %>
+          <%= link_to "削除する", admin_tag_path(tag), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

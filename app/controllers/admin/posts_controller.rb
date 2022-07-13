@@ -1,16 +1,12 @@
 class Admin::PostsController < ApplicationController
   def show
-  end
-
-  def index
-  end
-
-  def edit
-  end
-
-  def update
+    @post = Post.find(params[:id])
+    @post_tags = @post.tags
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to admin_users_path
   end
 end

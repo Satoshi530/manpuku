@@ -4,6 +4,7 @@ class Tag < ApplicationRecord
   has_many :posts,through: :post_tags
   validates :name, uniqueness: true, presence: true
 
+  #タグ検索のみ完全一致で結果を出力する
   def self.looks(word)
     if word != ""
       Tag.where(name: word)

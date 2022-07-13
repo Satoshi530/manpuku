@@ -10,7 +10,6 @@ class User::SearchesController < ApplicationController
       @tags = Tag.looks(@word)
       tag = Tag.find_by(name: @word)
       @posts = tag.posts.all
-
     end
   end
 end

@@ -1,40 +1,44 @@
-<nav class="navbar navbar-expand-lg navbar-light text-dark bg-dark">
-  <div class="logo">
-    <%= link_to 'まんぷくっ', posts_path %>
+<nav class="navbar navbar-expand-lg navbar-light text-dark">
+  <div class="container">
+  <a class="navbar-brand" href="/">
+    <img src="/assets/まん ぷく.png" alt="" width="100" height="100">
+  </a>
+  <div class="float-right">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav d-flex align-items-right">
+        <% if user_signed_in? %>
+          <li class="nav-item active">
+            <%= link_to "マイページ", user_path(current_user), class: 'btn btn-sm btn-outline-info nav-link text-info' %>
+          </li>
+          <li class="nav-item active">
+            <%=link_to"ブックマーク", favorites_user_path(current_user), class: 'btn btn-sm btn-outline-info nav-link text-info' %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-outline-info nav-link text-info' %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li class="nav-item active">
+            <%= link_to "ユーザー一覧", admin_users_path, class: 'btn btn-sm btn-outline-info nav-link text-info' %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "タグ一覧", admin_tags_path, class: 'btn btn-sm btn-outline-info nav-link text-info' %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-sm btn-outline-info nav-link text-info' %>
+          </li>
+        <% else %>
+          <li class="nav-item active">
+            <%= link_to "まんぷくっとは？", about_path, class: 'btn btn-sm btn-outline-info nav-link text-info' %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-sm btn-outline-info nav-link text-info' %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "ログイン", new_user_session_path, class: 'btn btn-sm btn-outline-info nav-link text-info' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "マイページ", user_path(current_user), class: 'btn btn-sm btn-outline-secondary nav-link text-light' %>
-        </li>
-        <li class="nav-item active">
-          <%=link_to"ブックマーク", favorites_user_path(current_user), class: 'btn btn-sm btn-outline-secondary nav-link text-light' %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-outline-secondary nav-link text-light' %>
-        </li>
-      <% elsif admin_signed_in? %>
-        <li class="nav-item active">
-          <%#= link_to "ユーザー一覧", admin_users_path, class: 'btn btn-sm btn-outline-secondary nav-link text-light' %>
-        </li>
-        <li class="nav-item active">
-          <%#= link_to "タグ一覧", admin_tags_path, class: 'btn btn-sm btn-outline-secondary nav-link text-light' %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-sm btn-outline-secondary nav-link text-light' %>
-        </li>
-      <% else %>
-        <li class="nav-item active">
-          <%= link_to "まんぷくっとは？", about_path, class: 'btn btn-sm btn-outline-secondary nav-link text-light' %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-sm btn-outline-secondary nav-link text-light' %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "ログイン", new_user_session_path, class: 'btn btn-sm btn-outline-secondary nav-link text-light' %>
-        </li>
-      <% end %>
-    </ul>
   </div>
 </nav>
