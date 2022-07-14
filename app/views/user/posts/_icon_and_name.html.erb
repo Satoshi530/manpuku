@@ -1,0 +1,11 @@
+<% if admin_signed_in? %>
+  <%= link_to admin_user_path(post.user) do %>
+    <%= image_tag post.user.get_profile_image(100,100) %>
+    <div class="align-bottom"><%= post.user.name %></div>
+  <% end %>
+<% else %>
+  <%= link_to (post.user) do %>
+    <%= image_tag post.user.get_profile_image(100,100) %>
+    <div class="align-bottom"><%= post.user.name %></div>
+  <% end %>
+<% end %>
