@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="heading mt-3">
-      <h4 class="text-center">ユーザー詳細</h4>
+      <h4>ユーザー詳細</h4>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-5 text-center">
       <%= image_tag @user.get_profile_image(150,100) %>
     </div>
-    <table class="table col-7 text-center">
+    <table class="table table-bordered col-7 text-center">
       <thead class="bg-info text-light" >
         <tr>
           <th>ユーザーID</th>
@@ -42,28 +42,7 @@
     </div>
     <h4><%= @user.name %>さんの投稿</h4>
     <div class="row">
-      <table>
-        <% @posts.each do |post| %>
-        <tr class="border-top">
-          <td class="col-4">
-            <%= link_to admin_post_path(post.id) do %>
-             <strong><%= post.restaurant_name %></strong>
-            <% end %>
-          </td>
-          <td class="col-8 text-right">
-            <p>投稿日時:<%= post.created_at.strftime('%Y/%m/%d') %></p>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= image_tag post.get_image[0], size: "300x200" %>
-          </td>
-          <td class="mx-auto">
-            <%= post.description %>
-          </td>
-        </tr>
-        <% end %>
-      </table>
+      <%= render 'user/posts/index', posts: @posts, post: @posts, user: @user%>
     </div>
   </div>
 </div>

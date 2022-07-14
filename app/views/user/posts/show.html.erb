@@ -1,71 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5 mt-4">
-      <div>
-      <%= @post.restaurant_name %>
-      </div>
-      <div>
-        <% @post_tags.each do |tag|%>
-          <%= link_to tag.name, searches_path(word: tag.name, range:"Tag") %>
-        <% end %>
-      </div>
-      <div>
-        <% if @post.user == current_user %>
-          <%= link_to "編集する", edit_post_path %>
-          <%= link_to "削除する", post_path(@post.id), method: :delete %>
-        <% end %>
-      </div>
-      <div class= "row text-center">
-        <table style="width: 100%">
-          <tbody>
-            <tr>
-              <td style="width: 80%">
-                <%= image_tag @post.get_image[0], size: "100x100" %>
-              </td>
-              <td>
-                <%= @post.description %>
-              </td>
-              <td>
-                <div class="relative-post-evaluation">
-                  <span>満足度：</span>
-                  <span id="star-rate-<%= @post.id %>"></span>
-                  <script>
-                    $('#star-rate-<%= @post.id %>').raty({
-                      size: 36,
-                      starOff: "<%= asset_path('star-off.png') %>",
-                      starOn: "<%= asset_path('star-on.png') %>",
-                      starHalf: "<%= asset_path('star-half.png') %>",
-                      half: true,
-                      readOnly: true,
-                      score: "<%= @post.rate %>",
-                    });
-                  </script>
-                  <%= @post.rate %>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <% if user_signed_in? %>
-                  <div id="favorite_<%= @post.id %>">
-                    <%= render 'user/favorites/favorite', post: @post %>
-                  </div>
-                  <%= render 'user/post_comments/form', post: @post, post_comment: @post_comment %>
-                <% end %>
-              </td>
-            </tr>
-              <td>
-                <%= @post.favorites.count %> いいね
-                :コメント数：<%= @post.post_comments.count %>
-              </td>
-            </tr>
-            <tr>
-              <td id="comments-area">
-                <%= render 'user/post_comments/comments', post: @post %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="col text-right">
+      <% if @post.user == current_user %>
+        <%= link_to "編集する", edit_post_path, class: "btn btn-success" %>
+        <%= link_to "削除する", post_path(@post.id), method: :delete, class: "btn btn-danger" %>
+      <% end %>
+    </div>
+    <%= render'user/posts/index', posts: @posts, user: @user %>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-auto">
+      <% if user_signed_in? %>
+        <div id="favorite_<%= @post.id %>">
+          <%= render 'user/favorites/favorite', post: @post %>
+        </div>
+        <%= render 'user/post_comments/form', post: @post, post_comment: @post_comment %>
+      <% end %>
+    </div>
+    <div class="col-auto">
+      <div id="comments-area">
+        <%= render 'user/post_comments/comments', post: @post %>
       </div>
     </div>
   </div>

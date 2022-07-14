@@ -13,7 +13,9 @@ get '/about' => 'user/homes#about'
   namespace :admin do
     resources :users, only:[:show, :index, :edit, :update]
     resources :tags, only:[:index, :edit, :update, :destroy]
-    resources :posts, only:[:show, :destroy]
+    resources :posts, only:[:show, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
   end
 
   scope module: :user do

@@ -1,39 +1,28 @@
-
-<table style="width: 100%">
+<table>
   <tbody>
     <% posts.each do |post| %>
     <tr>
-      <td>
-        <%= link_to post_path(post.id) do %>
-          <h4><%= post.restaurant_name %></h4>
-        <% end %>
-        <% post.tags.each do |tag|%>
-          <%= link_to tag.name, searches_path(word: tag.name, range:"Tag") %>
-        <% end %>
+      <td class="width: 100% ">
+       <%= render 'user/posts/restaurantname_and_tag', post: post %>
       </td>
     </tr>
     <tr>
-      <td style="width: 80%">
+      <td>
         <%= image_tag post.get_image[0], size: "250x200" %>
+        <%= render 'user/posts/evaluation', post: post %>
       </td>
-      <td style="width: 500px">
+      <td class="border text-left">
         <%= post.description %>
       </td>
     </tr>
-    <tr class="justify-content-end">
-      <td style="width: 50%">
+    <tr class="border-bottom">
+      <td class="col-4">
+        <%= render 'user/posts/icon_and_name', post: post, user: user %>
       </td>
-      <td align="right" style="width: 50%">
+      <td class="col-8 text-right">
+        <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
         <%= "#{post.post_comments.count} コメント" %>
         <%= "#{post.favorites.count}いいね" %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= link_to (post.user) do %>
-          <%= image_tag post.user.get_profile_image(100,100) %>
-          <%= post.user.name %>
-        <% end %>
       </td>
     </tr>
     <% end %>

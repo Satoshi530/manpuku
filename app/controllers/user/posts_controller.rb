@@ -18,14 +18,13 @@ class User::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    @user == current_user
     @post_tags = @post.tags
+    @user = @post.user
+    @posts = @user.posts.all
   end
 
   def index
     @posts = Post.all
-    @tag_list =Tag.all
-
   end
 
   def edit
