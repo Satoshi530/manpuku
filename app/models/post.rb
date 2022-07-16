@@ -7,7 +7,10 @@ class Post < ApplicationRecord
   # post_tags経由で複数のタグを持てる
   has_many :tags,through: :post_tags
 
-  validates :user_id, {presence: true}
+  validates :user_id, presence: true
+  validates :restaurant_name, presence: true
+  validates :description, presence: true,length:{maximum:200}
+  validates :rate, presence: true
 
   def get_image
     unless images.attached?

@@ -2,24 +2,29 @@
   <tbody>
     <% post.post_comments.each do |post_comment| %>
       <tr class="d-flex align-items-end">
-        <td>
-          <%= image_tag post_comment.user.get_profile_image(100,100) %>
+        <td class="text-center mt-3">
+          <% if admin_signed_in? %>
+            <%= link_to admin_user_path(post_comment.user.id) do %>
+              <div>
+                <%= image_tag post_comment.user.get_profile_image(100,100) %>
+              </div>
+              <div>
+                <%= post_comment.user.name %>
+              </div>
+            <% end %>
+          <% else %>
+            <%= link_to user_path(post_comment.user.id) do %>
+              <div>
+                <%= image_tag post_comment.user.get_profile_image(100,100) %>
+              </div>
+              <div>
+                <%= post_comment.user.name %>
+              </div>
+            <% end %>
+          <% end %>
         </td>
         <td>
           <%= post_comment.comment %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <% if admin_signed_in? %>
-            <%= link_to admin_user_path(post_comment.user.id) do %>
-              <%= post_comment.user.name %>
-            <% end %>
-          <% else %>
-            <%= link_to (post.user) do %>
-              <%= post_comment.user.name %>
-            <% end %>
-          <% end %>
         </td>
       </tr>
       <tr>
@@ -28,7 +33,7 @@
         </td>
       </tr>
       <tr class="border-bottom">
-        <td>
+        <td class="text-right">
           <% if post_comment.user == current_user %>
             <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, class: "btn btn-danger" %>
           <% elsif admin_signed_in? %>
