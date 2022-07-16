@@ -1,15 +1,45 @@
 <div class="container">
   <div class="row">
-    <div class="col text-right">
+    <div class="col-12 text-right">
       <% if @post.user == current_user %>
         <%= link_to "編集する", edit_post_path, class: "btn btn-success" %>
         <%= link_to "削除する", post_path(@post.id), method: :delete, class: "btn btn-danger" %>
       <% end %>
     </div>
-    <%= render'user/posts/index', posts: @posts, user: @user %>
-  </div>
-  <div class="row justify-content-end">
-    <div class="col-auto">
+    <table class="col-12">
+      <tbody>
+        <tr>
+          <td>
+           <%= render 'restaurantname_and_tag', post: @post %>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center">
+            <%= image_tag @post.get_image[0], size: "250x200" %><br>
+            <%= link_to "写真を見る", images_post_path(@post) %>
+            <%= render 'evaluation', post: @post %>
+          </td>
+          <td class="border text-left">
+            <%= @post.description %>
+          </td>
+        </tr>
+        <tr class="border-bottom">
+          <td class="text-center col-2">
+            <%= render 'icon_and_name', post: @post, user: @user %>
+          </td>
+          <td class="col-8 text-right">
+            <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+            <span id="comment_count">
+              <%= "#{@post.post_comments.count}" %>
+            </span>コメント
+            <span id="favorite_count">
+              <%= "#{@post.favorites.count}" %>
+            </span>いいね
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="col-12">
       <% if user_signed_in? %>
         <div id="favorite_<%= @post.id %>">
           <%= render 'user/favorites/favorite', post: @post %>
@@ -17,7 +47,7 @@
         <%= render 'user/post_comments/form', post: @post, post_comment: @post_comment %>
       <% end %>
     </div>
-    <div class="col-auto">
+    <div class="col-12">
       <div id="comments-area">
         <%= render 'user/post_comments/comments', post: @post %>
       </div>

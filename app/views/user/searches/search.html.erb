@@ -1,60 +1,122 @@
-<h2><%= @word %>の検索結果</h2>
-<table class="table table-hover table-inverse">
-  <% if @range == 'User' %>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td>
-            <%= link_to user_path(user.id) do %>
-              <%= image_tag user.get_profile_image(100,100) %>
-              <%= user.name %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3 text-left">
+      <h4><%= @word %>の検索結果</h4>
+      <table class="table table-hover table-inverse">
+        <% if @range == 'User' %>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td class="text-center">
+                  <%= link_to user_path(user.id) do %>
+                    <div>
+                      <%= image_tag user.get_profile_image(100,100) %>
+                    </div>
+                    <div>
+                      <%= user.name %>
+                    </div>
+                  <% end %>
+                </td>
+                <td class="align-middle">
+                  <%= user.introduction %>
+                </td>
+                <td class="align-middle">
+                  <%= link_to user_followings_path(user) do %>
+                    フォロー:<span id="followings">
+                      <%= user.followings.count %>
+                    </span>人
+                  <% end %>
+                  <br>
+
+                  <%= link_to user_followers_path(user) do %>
+                    フォロワー:<span id="followers">
+                      <%= user.followers.count %>
+                    </span>人
+                  <% end %>
+                </td>
+                <td class="align-middle text-center">
+                  <% if user_signed_in? %>
+                    <div id="follow">
+                      <%= render 'user/relationships/follow_button', user: user %>
+                    </div>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          </td>
-          <td>
-            <%= user.introduction %>
-          </td>
-          <td id="follow">
-            <%= render 'user/relationships/follow_button', user: user %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% elsif @range == 'Post' %>
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td>
-            <%= link_to post_path(post.id) do %>
-              <%= post.restaurant_name %>
+          </tbody>
+        <% elsif @range == 'Post' %>
+          <tbody>
+            <% @posts.each do |post| %>
+              <tr>
+                <td>
+                  <%= link_to post_path(post.id) do %>
+                    <%= image_tag post.get_image[0], size: "200x150" %>
+                  <% end %>
+                </td>
+                <td class="align-middle">
+                  <div>
+                    <%= link_to post_path(post.id) do %>
+                      <%= post.restaurant_name %>
+                    <% end %>
+                  </div>
+                  <div>
+                    <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <%= post.favorites.count %> いいね
+                  <p>コメント数：<%= post.post_comments.count %></p>
+                </td>
+                <td class="text-center">
+                  <%= link_to user_path(post.user) do %>
+                    <div>
+                      <%= image_tag post.user.get_profile_image(100,100) %>
+                    </div>
+                    <div>
+                      <%= post.user.name %>
+                    </div>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          </td>
-          <td>
-            <%= post.favorites.count %> いいね
-            <p>コメント数：<%= post.post_comments.count %></p>
-          </td>
-          <td>
-            <%= link_to user_path(post.user) do %>
-              <%= image_tag post.user.get_profile_image(100,100) %>
-              <%= post.user.name %>
+          </tbody>
+        <% elsif @range == 'Tag' %>
+          <tbody>
+            <% @tags.each do |tag| %>
+              <% tag.posts.each do |tag_post| %>
+                <tr>
+                  <td class="align-middle">
+                    <%= image_tag tag_post.get_image[0], size: "200x150" %>
+                  </td>
+                  <td class="align-middle">
+                    <div>
+                      <%= link_to post_path(tag_post.id) do %>
+                        <%= tag_post.restaurant_name %>
+                      <% end %>
+                    </div>
+                    <div>
+                      <p>投稿日：<%= tag_post.created_at.strftime('%Y/%m/%d') %></p>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <%= link_to user_path(tag_post.user) do %>
+                    <div>
+                      <%= image_tag tag_post.user.get_profile_image(100,100) %>
+                    </div>
+                    <div>
+                      <%= tag_post.user.name %>
+                    </div>
+                  <% end %>
+                  </td>
+                  <td class="align-middle text-center">
+                    <%= render 'user/relationships/follow_button', user: tag_post.user %>
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
-          </td>
-          <td id="follow">
-            <%= render 'user/relationships/follow_button', user: post.user %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% elsif @range == 'Tag' %>
-    <tbody>
-      <% @tags.each do |tag| %>
-        <tr>
-          <% tag.posts.each do |tag_post| %>
-          <td>
-            <%= tag_post.restaurant_name %>
-          </td>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

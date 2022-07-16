@@ -7,14 +7,22 @@
           <h4><%= @user.name %></h4>
         </div>
       </div>
-      <div class="col-2 text-center">
-          <%= link_to user_followings_path(@user) do %>
-            <p>フォロー:<%= @user.followings.count %>人</p>
-          <% end %>
-          <%= link_to user_followers_path(@user) do %>
-            <p>フォロワー:<%= @user.followers.count %>人</p>
-          <% end %>
-        </div>
+
+      <div class="col-2 text-left">
+        <%= link_to user_followings_path(@user) do %>
+          フォロー:<span id="followings">
+            <%= @user.followings.count %>
+          </span>人
+        <% end %>
+        <br>
+
+        <%= link_to user_followers_path(@user) do %>
+          フォロワー:<span id="followers">
+            <%= @user.followers.count %>
+          </span>人
+        <% end %>
+      </div>
+
       <div class="col-6 border">
         <%= @user.introduction %>
       </div>
@@ -31,8 +39,10 @@
       </div>
     </div>
     <div class="row">
-      <div>
+      <div class="col-12 text-center">
         <h4>投稿一覧</h4>
+      </div>
+      <div>
           <%= render 'user/posts/index', posts: @posts, post: @posts, user: @user%>
         <% else %>
           <p>このユーザーは退会済みです</p>

@@ -1,7 +1,7 @@
 <div class="relative-post-evaluation">
-  <span>満足度：</span>
   <span id="star-rate-<%= post.id %>"></span>
   <script>
+    $('#star-rate-<%= post.id %>').empty();
     $('#star-rate-<%= post.id %>').raty({
       size: 36,
       starOff: "<%= asset_path('star-off.png') %>",
@@ -12,5 +12,4 @@
       score: "<%= post.rate %>",
     });
   </script>
-  <%= post.rate %>
 </div>

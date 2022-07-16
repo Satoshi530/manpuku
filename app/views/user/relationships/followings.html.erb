@@ -1,27 +1,39 @@
-<h2>フォロー一覧</h2>
-<% if @users.exists? %>
-  <table class='table table-hover table-inverse'>
-    <thead>
-      <tr>
-        <th>image</th>
-        <th>name</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= image_tag user.get_profile_image, size:'50x50' %></td>
-          <td><%= user.name %></td>
-          <td>フォロー数:<%= user.followings.count %></td>
-          <td>フォロワー数:<%= user.followers.count %></td>
-          <td><%= link_to 'Show', user_path(user.id)%></td>
-        </tr>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <h4>フォロ一覧</h4>
+      <% if @users.exists? %>
+        <table class='table table-hover'>
+          <% @users.each do |user| %>
+            <tr class="text-center">
+              <td class="col-3">
+                <%=link_to user_path(user) do %>
+                  <%= image_tag user.get_profile_image(70,70) %>
+                <% end %>
+              </td>
+              <td class="col-3 align-middle">
+                <%=link_to user_path(user) do %>
+                  <%= user.name %>
+                <% end %>
+              </td>
+              <td class="col-3 text-left align-middle">
+                <%= user.introduction %>
+              </td>
+
+              <td class="col-3 align-middle">
+                <div id="follow">
+                  <% if user_signed_in? %>
+                    <%= render 'user/relationships/follow_button', user: user %>
+                  <% end %>
+                </div>
+              </td>
+
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <p>ユーザーはいません</p>
       <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+    </div>
+  </div>
+</div>

@@ -25,18 +25,21 @@
             <%= @user.name %>
           </td>
           <td>
-            <%= form_with model: @user, url: admin_user_path, method: :patch, local:true do |f| %>
-              <%= f.label :会員ステータス %>
-              <%= f.radio_button :is_deleted, :false%>
-              <%= f.label :is_deleted, "有効" %>
-              <%= f.radio_button :is_deleted, :true%>
-              <%= f.label :is_deleted, "退会" %>
-              <br>
-              <%= f.submit "変更を保存" %>
+            <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
+              <div>
+                <%= f.label :会員ステータス %>
+                <%= f.radio_button :is_deleted, :false%>
+                <%= f.label :is_deleted, "有効" %>
+                <%= f.radio_button :is_deleted, :true%>
+                <%= f.label :is_deleted, "退会" %>
+              </div>
+              <div>
+                <%= f.submit "変更を保存", class: "btn btn-info" %>
+              </div>
             <% end %>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

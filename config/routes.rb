@@ -22,6 +22,9 @@ get '/about' => 'user/homes#about'
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :posts do
+      member do
+        get :images
+      end
       resources :post_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end

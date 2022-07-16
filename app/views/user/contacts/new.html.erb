@@ -1,3 +1,4 @@
+<%= render 'layouts/error', model: @contact %>
 <%= form_with model: @contact, url: confirm_contacts_path do |f| %>
   <div class="form_group border_bottom">
     <%= f.label :name, 'お名前' %>
