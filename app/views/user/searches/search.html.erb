@@ -91,7 +91,11 @@
               <% tag.posts.each do |tag_post| %>
                 <tr>
                   <td class="align-middle">
-                    <%= image_tag tag_post.get_image[0], size: "200x150" %>
+                    <div>
+                      <%= link_to post_path(tag_post.id) do %>
+                        <%= image_tag tag_post.get_image[0], size: "200x150" %>
+                      <% end %>
+                    </div>
                   </td>
                   <td class="align-middle">
                     <div>
