@@ -20,6 +20,11 @@
             <%= @post.description %>
           </td>
         </tr>
+        <tr>
+          <td>
+            <%= @post.info %>
+          </td>
+        </tr>
         <tr class="border-bottom">
           <td class="text-center col-2">
             <%= render 'user/posts/icon_and_name', post: @post, user: @user %>

@@ -28,7 +28,7 @@ class User::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).order(created_at: :desc)
   end
 
   def edit
@@ -62,6 +62,6 @@ class User::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:restaurant_name, :description, :rate, images: [])
+    params.require(:post).permit(:restaurant_name, :description, :rate, :info, images: [])
   end
 end

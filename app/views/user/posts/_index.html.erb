@@ -1,3 +1,4 @@
+<div>
 <table>
   <tbody>
     <% posts.each do |post| %>
@@ -19,6 +20,11 @@
         <%= post.description %>
       </td>
     </tr>
+    <tr>
+      <td>
+        <%= post.info %>
+      </td>
+    </tr>
     <tr class="border-bottom">
       <td class="col-2 text-center">
         <%= render 'user/posts/icon_and_name', post: post, user: user %>
@@ -32,3 +38,8 @@
     <% end %>
   </tbody>
 </table>
+</div>
+<div class="col-5"></div>
+<div class="col-5 text-center">
+  <h5><%= paginate posts %></h5>
+</div>
