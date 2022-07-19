@@ -21,7 +21,7 @@
             </th>
             <td>
               <div class="field" id="star">
-  
+
               </div>
             </td>
           </tr>
@@ -35,10 +35,18 @@
           </tr>
           <tr>
             <th>
+             <%= f.label :info, '店舗情報' %>
+            </th>
+            <td>
+              <%= f.text_area :info, placeholder:"住所/電話番号/定休日など", class: 'form-control', size: "5x5" %>
+            </td>
+          </tr>
+          <tr>
+            <th>
               <%= f.label :"関連タグ(コンマを入れると複数のタグを付けられます)"  %>
             </th>
             <td>
-              <%= text_field_tag :name, "", class: 'form-control' %>
+              <%= text_field_tag :name, "", placeholder:"例: 京都,中華", class: 'form-control' %>
             </td>
           </tr>
           <tr>
@@ -46,12 +54,12 @@
               <%= f.label :description, '紹介文' %>
             </th>
             <td class="col-9">
-              <%= f.text_area :description, class: 'form-control',size: "10x10" %>
+              <%= f.text_area :description, placeholder:"食べたメニューと値段、感想など", class: 'form-control',size: "10x10" %>
             </td>
           </tr>
           <tr>
             <td>
-              <%= f.submit "投稿する" %>
+              <%= f.submit "投稿する", class: "btn btn-info" %>
             </td>
           </tr>
         </table>

@@ -3,7 +3,7 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).order(created_at: :desc)
   end
 
   def edit
@@ -24,8 +24,7 @@ class User::UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
-    favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
-    @posts = Post.find(favorites)
+    @posts = @user.favorite_posts.page(params[:page])
   end
 
   def withdrawal

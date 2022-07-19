@@ -5,7 +5,7 @@
   <div class="search_form col-7 my-3">
     <%= form_with url: searches_path, local: true, method: :get do |f| %>
       <%= f.text_field :word, placeholder: "例　ハンバーガー", size: 40 %>
-      <%= f.select :range, options_for_select([['User'], ['Post'], ['Tag']]) %>
+      <%= f.select :range, options_for_select([['ユーザー','User'], ['店名','Post'], ['タグ','Tag']]) %>
       <%= f.submit "検索", class: "btn btn-info" %>
     <% end %>
   </div>

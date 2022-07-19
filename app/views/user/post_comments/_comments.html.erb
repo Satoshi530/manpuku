@@ -1,6 +1,6 @@
-<table>
-  <tbody>
-    <% post.post_comments.each do |post_comment| %>
+<% post.post_comments.each do |post_comment| %>
+  <table>
+    <tbody>
       <tr class="d-flex align-items-end">
         <td class="text-center mt-3">
           <% if admin_signed_in? %>
@@ -41,6 +41,6 @@
           <% end %>
         </td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>

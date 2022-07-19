@@ -8,15 +8,15 @@
         </div>
       </div>
 
-      <div class="col-2 text-left">
-        <%= link_to user_followings_path(@user) do %>
+      <div class="col-2 text-left font-weight-bold text-dark">
+        <%= link_to user_followings_path(@user), class: "text-dark" do %>
           フォロー:<span id="followings">
             <%= @user.followings.count %>
           </span>人
         <% end %>
         <br>
 
-        <%= link_to user_followers_path(@user) do %>
+        <%= link_to user_followers_path(@user), class: "text-dark" do %>
           フォロワー:<span id="followers">
             <%= @user.followers.count %>
           </span>人

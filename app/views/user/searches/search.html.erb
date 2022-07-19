@@ -3,6 +3,8 @@
     <div class="col-12 mt-3 text-left">
       <h4><%= @word %>の検索結果</h4>
       <table class="table table-hover table-inverse">
+
+        <!--ユーザーで検索する場合-->
         <% if @range == 'User' %>
           <tbody>
             <% @users.each do |user| %>
@@ -12,7 +14,7 @@
                     <div>
                       <%= image_tag user.get_profile_image(100,100) %>
                     </div>
-                    <div>
+                    <div class="text-dark">
                       <%= user.name %>
                     </div>
                   <% end %>
@@ -21,14 +23,13 @@
                   <%= user.introduction %>
                 </td>
                 <td class="align-middle">
-                  <%= link_to user_followings_path(user) do %>
+                  <%= link_to user_followings_path(user), class: "text-dark" do %>
                     フォロー:<span id="followings">
                       <%= user.followings.count %>
                     </span>人
                   <% end %>
                   <br>
-
-                  <%= link_to user_followers_path(user) do %>
+                  <%= link_to user_followers_path(user), class: "text-dark" do %>
                     フォロワー:<span id="followers">
                       <%= user.followers.count %>
                     </span>人
@@ -44,6 +45,8 @@
               </tr>
             <% end %>
           </tbody>
+
+        <!--店名で検索する場合-->
         <% elsif @range == 'Post' %>
           <tbody>
             <% @posts.each do |post| %>
@@ -55,7 +58,7 @@
                 </td>
                 <td class="align-middle">
                   <div>
-                    <%= link_to post_path(post.id) do %>
+                    <%= link_to post_path(post.id), class: "text-dark" do %>
                       <%= post.restaurant_name %>
                     <% end %>
                   </div>
@@ -72,7 +75,7 @@
                     <div>
                       <%= image_tag post.user.get_profile_image(100,100) %>
                     </div>
-                    <div>
+                    <div class="text-dark">
                       <%= post.user.name %>
                     </div>
                   <% end %>
@@ -80,6 +83,8 @@
               </tr>
             <% end %>
           </tbody>
+
+        <!--タグで検索する場合-->
         <% elsif @range == 'Tag' %>
           <tbody>
             <% @tags.each do |tag| %>
@@ -90,7 +95,7 @@
                   </td>
                   <td class="align-middle">
                     <div>
-                      <%= link_to post_path(tag_post.id) do %>
+                      <%= link_to post_path(tag_post.id), class: "text-dark" do %>
                         <%= tag_post.restaurant_name %>
                       <% end %>
                     </div>
@@ -103,13 +108,15 @@
                     <div>
                       <%= image_tag tag_post.user.get_profile_image(100,100) %>
                     </div>
-                    <div>
+                    <div class="text-dark">
                       <%= tag_post.user.name %>
                     </div>
                   <% end %>
                   </td>
                   <td class="align-middle text-center">
-                    <%= render 'user/relationships/follow_button', user: tag_post.user %>
+                    <% if user_signed_in? %>
+                      <%= render 'user/relationships/follow_button', user: tag_post.user %>
+                    <% end %>
                   </td>
                 </tr>
               <% end %>

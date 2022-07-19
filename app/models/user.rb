@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  #ユーザーがいいねした投稿の情報を取得する
+  has_many :favorite_posts, through: :favorites, source: :post
   # 自分がフォローする側の関係
   has_many :relationships, foreign_key: :follower_id, dependent: :destroy
   has_many :followings, through: :relationships, source: :followed
