@@ -1,45 +1,30 @@
-<div>
-<table>
-  <tbody>
-    <% posts.each do |post| %>
-    <tr>
-      <td class="width: 100% ">
-       <%= render 'user/posts/restaurantname_and_tag', post: post %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div>
-          <%= image_tag post.get_image[0], size: "250x200" %>
-        </div>
-        <div class="text-center">
-          <%= render 'user/posts/evaluation', post: post %>
-        </div>
-      </td>
-      <td class="border text-left">
-        <%= post.description %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= post.info %>
-      </td>
-    </tr>
-    <tr class="border-bottom">
-      <td class="col-2 text-center">
-        <%= render 'user/posts/icon_and_name', post: post, user: user %>
-      </td>
-      <td class="col-8 text-right">
-        <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
-        <%= "#{post.post_comments.count} コメント" %>
-        <%= "#{post.favorites.count}いいね" %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <% posts.each do |post| %>
+    <div class="text-left mt-3 col-6">
+      <%= render 'user/posts/restaurantname_and_tag', post: post %>
+    </div>
+    <div class="text-right mt-3 col-6">
+      <%= post.info %>
+    </div>
+
+    <div class="text-center col-3">
+      <%= image_tag post.get_image[0], size: "250x200" %>
+      <%= render 'user/posts/evaluation', post: post %>
+    </div>
+    <div class="border text-left text-break col-9">
+      <%= post.description %>
+    </div>
+    
+    <div class="text-center mt-3 col-2 border-bottom">
+      <%= render 'user/posts/icon_and_name', post: post, user: user %>
+    </div>
+    <div class="text-right mt-3 col-10 border-bottom">
+      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+      <%= "#{post.post_comments.count} コメント" %>
+      <%= "#{post.favorites.count}いいね" %>
+    </div>
+  <% end %>
 </div>
-<div class="col-5"></div>
 <div class="col-5 text-center">
   <h5><%= paginate posts %></h5>
 </div>

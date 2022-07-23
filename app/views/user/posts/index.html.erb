@@ -3,16 +3,16 @@
     <%= render 'user/searches/form' %>
   </div>
   <div class="row">
-    <div class="icon col-5 mt-4 text-left">
+    <div class="icon col-5 mt-3 text-left">
       <% if user_signed_in? %>
-        <%= link_to new_post_path, class: "btn pull-right" do %>
-          <i class="fas fa-home"></i>
+        <%= link_to new_post_path, class: "btn pull-right btn btn-info" do %>
+          <h7><i class="far fa-plus-square mt-2"></i> 投稿する</h7>
         <% end %>
       <% end %>
     </div>
   </div>
-  <div class="row">
-      <%= render 'index', posts: @posts, user: @users %>
+  <div>
+  <%= render 'index', posts: @posts, user: @users %>
   </div>
 </div>
 
