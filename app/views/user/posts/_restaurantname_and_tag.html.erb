@@ -6,6 +6,7 @@
     <%= link_to tag.name, admin_tags_path, class: "font-weight-bold text-dark" %>
   <% end %>
 
+
 <% else %>
   <%= link_to post_path(post.id) do %>
     <h4 class="font-weight-bold text-dark"><%= post.restaurant_name %></h4>
