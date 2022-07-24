@@ -17,6 +17,7 @@
     </div>
     <div class="border text-break col-9">
       <%= @post.description %>
+      <%=safe_join(@post.description.split("\n"),tag(:br))%>
     </div>
 
     <div class="text-center mt-3 col-2 border-bottom">

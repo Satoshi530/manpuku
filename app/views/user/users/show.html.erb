@@ -24,7 +24,7 @@
       </div>
 
       <div class="col-6 border text-break">
-        <%= @user.introduction %>
+        <%=safe_join(@user.introduction.split("\n"),tag(:br))%>
       </div>
       <div class="col-2 text-right">
         <% if @user == current_user %>

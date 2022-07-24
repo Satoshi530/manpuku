@@ -59,6 +59,7 @@
           <tr>
             <td>
               <%= f.submit "変更を保存する", class: "btn btn-info" %>
+              <%= link_to "戻る", request.referer, class: "font-weight-bold ml-2 text-dark" %>
             </td>
           </tr>
         </table>

@@ -12,9 +12,8 @@
       <%= render 'user/posts/evaluation', post: post %>
     </div>
     <div class="border text-left text-break col-9">
-      <%= post.description %>
+      <%=safe_join(post.description.split("\n"),tag(:br))%>
     </div>
-    
     <div class="text-center mt-3 col-2 border-bottom">
       <%= render 'user/posts/icon_and_name', post: post, user: user %>
     </div>

@@ -30,7 +30,7 @@
   </div>
   <div class="row">
     <div class="col-4">
-      お問合せ内容
+      お問合せ内容:
     </div>
     <div class="col-8 text-break">
       <%= @contact.message %>
@@ -46,7 +46,7 @@
           <%= f.hidden_field :email %>
           <%= f.hidden_field :subject %>
           <%= f.hidden_field :message %>
-          <div><%= f.submit '送信', class: "btn btn-info" %></div>
+          <div><%= f.submit '送信', class: "btn btn-info mb-2" %></div>
         <% end %>
       </div>
       <div>
@@ -55,7 +55,7 @@
           <%= f.hidden_field :email %>
           <%= f.hidden_field :subject %>
           <%= f.hidden_field :message %>
-          <div><%= f.submit '入力画面に戻る', class: "btn btn-success" %></div>
+          <div><%= f.submit '入力画面に戻る', class: "btn btn-success mb-2" %></div>
         <% end %>
       </div>
     </div>
