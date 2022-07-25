@@ -24,13 +24,18 @@
       </div>
 
       <div class="col-6 border text-break">
-        <%=safe_join(@user.introduction.split("\n"),tag(:br))%>
+        <!-- 条件分岐をしないとintroductionが未設定の場合エラーになる-->
+        <%if @user.introduction.nil? %>
+          <%= @user.introduction%>
+        <% else %>
+          <%= safe_join(@user.introduction.split("\n"),tag(:br))%>
+        <% end %>
       </div>
       <div class="col-2 text-right">
         <% if @user == current_user %>
           <%= link_to "編集する", edit_user_path, class: 'btn btn-success' %>
         <% else %>
-          <div id="follow">
+          <div id="follow_<%= @user.id %>">
             <% if user_signed_in? %>
               <%= render 'user/relationships/follow_button', user: @user %>
             <% end %>
