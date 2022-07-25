@@ -16,7 +16,7 @@
 
     <div class="col-3 text-center">
       <%= image_tag @post.get_image[0], size: "250x200" %><br>
-      <%= link_to "写真を見る", images_post_path(@post) %>
+      <%= link_to "写真を見る", images_post_path(@post), class:"font-weight-bold text-dark" %>
       <%= render 'evaluation', post: @post %>
     </div>
     <div class="border text-break col-9">
