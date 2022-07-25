@@ -21,7 +21,7 @@
               </td>
 
               <td class="col-3 align-middle">
-                <div id="follow">
+                <div id="follow_<%= user.id %>">
                   <% if user_signed_in? %>
                     <%= render 'user/relationships/follow_button', user: user %>
                   <% end %>

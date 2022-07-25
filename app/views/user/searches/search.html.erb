@@ -22,22 +22,9 @@
                 <td class="align-middle">
                   <%= user.introduction %>
                 </td>
-                <td class="align-middle">
-                  <%= link_to user_followings_path(user), class: "text-dark" do %>
-                    フォロー:<span id="followings">
-                      <%= user.followings.count %>
-                    </span>人
-                  <% end %>
-                  <br>
-                  <%= link_to user_followers_path(user), class: "text-dark" do %>
-                    フォロワー:<span id="followers">
-                      <%= user.followers.count %>
-                    </span>人
-                  <% end %>
-                </td>
                 <td class="align-middle text-center">
                   <% if user_signed_in? %>
-                    <div id="follow">
+                    <div id="follow_<%= user.id %>">
                       <%= render 'user/relationships/follow_button', user: user %>
                     </div>
                   <% end %>
@@ -119,7 +106,9 @@
                   </td>
                   <td class="align-middle text-center">
                     <% if user_signed_in? %>
-                      <%= render 'user/relationships/follow_button', user: tag_post.user %>
+                      <div id="follow_<%= tag_post.user.id %>">
+                        <%= render 'user/relationships/follow_button', user: tag_post.user %>
+                      </div>
                     <% end %>
                   </td>
                 </tr>
