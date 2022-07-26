@@ -19,13 +19,16 @@
       <%= link_to "写真を見る", images_post_path(@post), class:"font-weight-bold text-dark" %>
       <%= render 'evaluation', post: @post %>
     </div>
+    
     <div class="border text-break col-9">
+      <!--改行/スペースをビューに反映させる-->
       <%=safe_join(@post.description.split("\n"),tag(:br))%>
     </div>
 
     <div class="text-center mt-3 col-2 border-bottom">
       <%= render 'icon_and_name', post: @post, user: @user %>
     </div>
+    
     <!--SNSのリンク-->
     <div class="text-center mt-3 col-7 border-bottom">
       <%= link_to "https://twitter.com/intent/tweet?url=#{request.url}", class: "btn btn-primary" do %>
@@ -35,6 +38,7 @@
         <i class="fab fa-line"></i>シェアする
       <% end %>
     </div>
+    
     <div class="text-right mt-3 col-3 border-bottom">
       <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
       <span id="comment_count">
