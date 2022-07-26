@@ -12,7 +12,7 @@ class Admin::TagsController < ApplicationController
     @tag = Tag.find(params[:id])
     @tag.update(tag_params)
     flash[:notice] = "編集しました"
-      redirect_to admin_tags_path
+    redirect_to admin_tags_path
   end
 
   def destroy

@@ -1,9 +1,11 @@
 <div class="container">
+
   <div class="row">
     <div class="col-12 mt-3">
       <h4>お問合せ内容の確認</h4>
     </div>
   </div>
+
   <div class="row">
     <div class="col-4">
       お名前:
@@ -12,6 +14,7 @@
       <%= @contact.name %>
     </div>
   </div>
+
   <div class="row">
     <div class="col-4">
       ご返信用メールアドレス:
@@ -20,6 +23,7 @@
       <%= @contact.email %>
     </div>
   </div>
+
   <div class="row">
     <div class="col-4">
       件名:
@@ -28,6 +32,7 @@
       <%= @contact.subject %>
     </div>
   </div>
+
   <div class="row">
     <div class="col-4">
       お問合せ内容:
@@ -36,27 +41,29 @@
       <%= @contact.message %>
       </div>
   </div>
+
   <div>
     <br><p>こちらの内容でお送りしてよろしいですか？</p>
   </div>
+
   <div class="row">
-      <div class=col-1>
-        <%= form_with model: @contact, url: contacts_path, method: :post do |f| %>
-          <%= f.hidden_field :name %>
-          <%= f.hidden_field :email %>
-          <%= f.hidden_field :subject %>
-          <%= f.hidden_field :message %>
-          <div><%= f.submit '送信', class: "btn btn-info mb-2" %></div>
-        <% end %>
-      </div>
-      <div>
-        <%= form_with model: @contact, url: back_contacts_path do |f| %>
-          <%= f.hidden_field :name %>
-          <%= f.hidden_field :email %>
-          <%= f.hidden_field :subject %>
-          <%= f.hidden_field :message %>
-          <div><%= f.submit '入力画面に戻る', class: "btn btn-success mb-2" %></div>
-        <% end %>
-      </div>
+    <div class=col-1>
+      <%= form_with model: @contact, url: contacts_path, method: :post do |f| %>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :email %>
+        <%= f.hidden_field :subject %>
+        <%= f.hidden_field :message %>
+        <div><%= f.submit '送信', class: "btn btn-info mb-2" %></div>
+      <% end %>
+    </div>
+    <div>
+      <%= form_with model: @contact, url: back_contacts_path do |f| %>
+        <%= f.hidden_field :name %>
+        <%= f.hidden_field :email %>
+        <%= f.hidden_field :subject %>
+        <%= f.hidden_field :message %>
+        <div><%= f.submit '入力画面に戻る', class: "btn btn-success mb-2" %></div>
+      <% end %>
     </div>
   </div>
+</div>

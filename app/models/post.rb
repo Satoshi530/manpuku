@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :post_tags,dependent: :destroy
-  # post_tags経由で複数のタグを持てる
+  # post_tagsを経由して複数のタグを持てる
   has_many :tags,through: :post_tags
 
   validates :user_id, presence: true

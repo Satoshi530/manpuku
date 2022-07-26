@@ -12,8 +12,10 @@
       <%= render 'user/posts/evaluation', post: post %>
     </div>
     <div class="border text-left text-break col-9">
+      <!--改行/スペースをビューに反映させる-->
       <%=safe_join(post.description.split("\n"),tag(:br))%>
     </div>
+    
     <div class="text-center mt-3 col-2 border-bottom">
       <%= render 'user/posts/icon_and_name', post: post, user: user %>
     </div>
@@ -24,6 +26,7 @@
     </div>
   <% end %>
 </div>
+
 <div class="col-5 text-center">
   <h5><%= paginate posts %></h5>
 </div>

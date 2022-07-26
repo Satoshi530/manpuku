@@ -5,6 +5,7 @@
     </div>
     <div class="col-12">
       <%= render 'layouts/error', model: @post %>
+
       <%= form_with model: @post, url: post_path, method: :patch do |f| %>
         <table class="table table-hover">
           <tr>
@@ -64,6 +65,7 @@
           </tr>
         </table>
       <% end %>
+
       <script>
         $('#star').raty({
           size     : 36,
@@ -74,6 +76,7 @@
           half: true,
         });
       </script>
+
     </div>
   </div>
 </div>

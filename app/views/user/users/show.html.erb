@@ -1,5 +1,6 @@
 <div class="container">
   <% if @user.is_deleted == false %>
+
     <div class="row border-bottom d-flex align-items-center">
       <div class="text-center col-2">
         <div>
@@ -24,13 +25,14 @@
       </div>
 
       <div class="col-6 border text-break">
-        <!-- 条件分岐をしないとintroductionが未設定の場合エラーになる-->
+        <!-- if文を使わないと自己紹介を設定していないユーザーの詳細ページにアクセスできない-->
         <%if @user.introduction.nil? %>
           <%= @user.introduction%>
         <% else %>
           <%= safe_join(@user.introduction.split("\n"),tag(:br))%>
         <% end %>
       </div>
+
       <div class="col-2 text-right">
         <% if @user == current_user %>
           <%= link_to "編集する", edit_user_path, class: 'btn btn-success' %>
@@ -43,15 +45,16 @@
         <% end %>
       </div>
     </div>
+
     <div class="row">
       <div class="col-12 text-center">
         <h4>投稿一覧</h4>
       </div>
       <div>
-          <%= render 'user/posts/index', posts: @posts, post: @posts, user: @user%>
-        <% else %>
-          <p>このユーザーは退会済みです</p>
-        <% end %>
+        <%= render 'user/posts/index', posts: @posts, post: @posts, user: @user%>
       </div>
     </div>
+  <% else %>
+    <p>このユーザーは退会済みです</p>
+  <% end %>
 </div>

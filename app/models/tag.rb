@@ -1,6 +1,6 @@
 class Tag < ApplicationRecord
   has_many :post_tags, dependent: :destroy
-  # post_tags経由で複数の投稿を持てる
+  # post_tagsを経由して複数の投稿を持てる
   has_many :posts,through: :post_tags
   validates :name, uniqueness: true, presence: true
 
