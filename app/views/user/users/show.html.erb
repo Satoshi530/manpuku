@@ -1,4 +1,5 @@
 <div class="container">
+  <!--ユーザーが退会していない場合-->
   <% if @user.is_deleted == false %>
 
     <div class="row border-bottom d-flex align-items-center">
@@ -54,6 +55,8 @@
         <%= render 'user/posts/index', posts: @posts, post: @posts, user: @user%>
       </div>
     </div>
+
+  <!--ユーザーが退会済みの場合の表示-->
   <% else %>
     <p>このユーザーは退会済みです</p>
   <% end %>

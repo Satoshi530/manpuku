@@ -5,7 +5,7 @@
       <%= link_to "削除する", admin_post_path(@post.id), method: :delete, class: "btn btn-danger" %>
     </div>
 
-    <%= render 'user/posts/restaurantname_and_tag', post: @post %>
+    <%= render 'user/posts/restaurant_info', post: @post %>
 
 
     <div class="col-3 text-center">
@@ -39,7 +39,6 @@
       <div id="comments-area">
         <%= render 'user/post_comments/comments', post: @post %>
       </div>
-
     </div>
   </div>
 </div>

@@ -3,6 +3,8 @@
     <tbody>
       <tr class="d-flex align-items-end">
         <td class="text-center mt-3">
+          
+          <!--管理者とユーザーで遷移先を分岐させる-->
           <% if admin_signed_in? %>
             <%= link_to admin_user_path(post_comment.user.id) do %>
               <div>
@@ -12,6 +14,7 @@
                 <%= post_comment.user.name %>
               </div>
             <% end %>
+            
           <% else %>
             <%= link_to user_path(post_comment.user.id) do %>
               <div>
@@ -22,6 +25,7 @@
               </div>
             <% end %>
           <% end %>
+          
         </td>
         <td class="text-break">
           <%= post_comment.comment %>
