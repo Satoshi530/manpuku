@@ -1,0 +1,82 @@
+<div class="container">
+  
+  <div class="row">
+    <div class="col-auto mt-3">
+      <h4>新規投稿</h4>
+    </div>
+    <div class="col-12">
+      <%= render 'layouts/error', model: @post %>
+      
+      <%= form_with model: @post, url: posts_path, method: :post do |f| %>
+        <table class="table table-hover">
+          <tr>
+            <th class="col-5">
+              <%= f.label :restaurant_name, '店名' %>
+            </th>
+            <td class="col-7">
+              <%= f.text_field :restaurant_name, class: 'form-control' %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <%= f.label :rate, "満足度" %>
+            </th>
+            <td>
+              <div class="field" id="star">
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>
+             <%= f.label :images, '画像　(複数選択可能)' %>
+            </th>
+            <td>
+              <%= f.file_field :images, multiple: true, accept: "image/*" %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+             <%= f.label :info, '店舗情報' %>
+            </th>
+            <td>
+              <%= f.text_area :info, placeholder:"住所/電話番号/定休日など", class: 'form-control', size: "5x5" %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <%= f.label :"関連タグ(コンマを入れると複数のタグを付けられます)"  %>
+            </th>
+            <td>
+              <%= text_field_tag :name, "", placeholder:"例: 京都,中華", class: 'form-control' %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-3">
+              <%= f.label :description, '紹介文' %>
+            </th>
+            <td class="col-9">
+              <%= f.text_area :description, placeholder:"食べたメニューと値段、感想など", class: 'form-control',size: "10x10" %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.submit "投稿する", class: "btn btn-info" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+      
+      <script>
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'post[rate]',
+          half: true,
+        });
+      </script>
+      
+    </div>
+  </div>
+</div>

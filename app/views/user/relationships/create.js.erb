@@ -1,0 +1,3 @@
+$("#follow_<%= @user.id %>").html("<%= j(render 'user/relationships/follow_button', user: @user) %>");
+$("#followings_<%= @user.id %>").html("<%= @user.followings.count %>");
+$("#followers_<%= @user.id %>").html("<%= @user.followers.count %>");

@@ -1,0 +1,49 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-auto mt-3">
+      <h4>ユーザー情報編集</h4>
+    </div>
+
+    <div class="col-12 border-bottom">
+
+      <%= form_with model: @user, url: user_path, method: :patch do |f| %>
+        <table class="table table-hover">
+          <tr>
+            <th>
+               <%= f.label :name, '名前' %>
+            </th>
+            <td>
+              <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <%= f.label :images, 'プロフィール画像' %>
+            </th>
+            <td>
+              <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <%= f.label :introduction, '自己紹介' %>
+            </th>
+            <td>
+              <%= f.text_area :introduction, autofocus: true, class: 'form-control',size: "5x5" %>
+            </td>
+          </tr>
+          <tr class="text-right">
+            <th></th>
+            <td>
+              <%= f.submit "変更を保存", class: 'btn btn-success' %>
+              <%= link_to "退会する", unsubscribe_path, class: 'btn btn-danger' %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+
+    <%= link_to '戻る', user_path, class: 'text-dark font-weight-bold' %>
+  </div>
+
+</div>

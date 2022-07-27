@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <h4>お問合せフォーム</h4>
+      <%= render 'layouts/error', model: @contact %>
+
+      <%= form_with model: @contact, url: confirm_contacts_path do |f| %>
+        <table class="table table-hover">
+          <tr>
+            <th>
+              <%= f.label :name, 'お名前' %>
+            </th>
+            <td>
+              <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <%= f.label :email, 'メールアドレス' %>
+            </th>
+            <td>
+              <%= f.text_field :email, autofocus: true, class: 'form-control' %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <%= f.label :subject, '件名' %>
+            </th>
+            <td>
+              <%= f.text_field :subject, autofocus: true, class: 'form-control' %>
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <%= f.label :message, 'お問合せ内容' %>
+            </th>
+            <td>
+              <%= f.text_area :message, size: '10x10', class: 'form-control' %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.submit "お問合せ内容の確認", class: "btn btn-info" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+
+    </div>
+  </div>
+</div>

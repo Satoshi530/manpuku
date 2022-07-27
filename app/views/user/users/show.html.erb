@@ -1,0 +1,63 @@
+<div class="container">
+  <!--ユーザーが退会していない場合-->
+  <% if @user.is_deleted == false %>
+
+    <div class="row border-bottom d-flex align-items-center">
+      <div class="text-center col-2">
+        <div>
+          <%= image_tag @user.get_profile_image(100,100) %>
+          <h4><%= @user.name %></h4>
+        </div>
+      </div>
+
+      <div class="col-2 text-left font-weight-bold text-dark">
+        <%= link_to user_followings_path(@user), class: "text-dark" do %>
+          フォロー:<span id="followings">
+            <%= @user.followings.count %>
+          </span>人
+        <% end %>
+        <br>
+
+        <%= link_to user_followers_path(@user), class: "text-dark" do %>
+          フォロワー:<span id="followers">
+            <%= @user.followers.count %>
+          </span>人
+        <% end %>
+      </div>
+
+      <div class="col-6 border text-break">
+        <!-- if文を使わないと自己紹介を設定していないユーザーの詳細ページにアクセスできない-->
+        <%if @user.introduction.nil? %>
+          <%= @user.introduction%>
+        <% else %>
+          <%= safe_join(@user.introduction.split("\n"),tag(:br))%>
+        <% end %>
+      </div>
+
+      <div class="col-2 text-right">
+        <% if @user == current_user %>
+          <%= link_to "編集する", edit_user_path, class: 'btn btn-success' %>
+        <% else %>
+          <div id="follow_<%= @user.id %>">
+            <% if user_signed_in? %>
+              <%= render 'user/relationships/follow_button', user: @user %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-center">
+        <h4>投稿一覧</h4>
+      </div>
+      <div>
+        <%= render 'user/posts/index', posts: @posts, post: @posts, user: @user%>
+      </div>
+    </div>
+
+  <!--ユーザーが退会済みの場合の表示-->
+  <% else %>
+    <p>このユーザーは退会済みです</p>
+  <% end %>
+</div>

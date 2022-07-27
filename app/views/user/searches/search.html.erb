@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3 text-left">
+      <h4><%= @word %>の検索結果</h4>
+
+      <table class="table table-hover table-inverse">
+        <!--ユーザーで検索する場合-->
+        <% if @range == 'User' %>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td class="text-center">
+                  <%= link_to user_path(user.id) do %>
+                    <div>
+                      <%= image_tag user.get_profile_image(100,100) %>
+                    </div>
+                    <div class="text-dark">
+                      <%= user.name %>
+                    </div>
+                  <% end %>
+                </td>
+                <td class="align-middle">
+                  <%= user.introduction %>
+                </td>
+                <td class="align-middle text-center">
+                  <% if user_signed_in? %>
+                    <div id="follow_<%= user.id %>">
+                      <%= render 'user/relationships/follow_button', user: user %>
+                    </div>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+
+        <!--店名で検索する場合-->
+        <% elsif @range == 'Post' %>
+          <tbody>
+            <% @posts.each do |post| %>
+              <tr>
+                <td>
+                  <%= link_to post_path(post.id) do %>
+                    <!--投稿画像の一つ目のみ表示させる-->
+                    <%= image_tag post.get_image[0], size: "200x150" %>
+                  <% end %>
+                </td>
+                <td class="align-middle">
+                  <div>
+                    <%= link_to post_path(post.id), class: "text-dark" do %>
+                      <%= post.restaurant_name %>
+                    <% end %>
+                  </div>
+                  <div>
+                    <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+                  </div>
+                </td>
+                <td class="align-middle">
+                  <%= post.favorites.count %> いいね
+                  <p>コメント数：<%= post.post_comments.count %></p>
+                </td>
+                <td class="text-center">
+                  <%= link_to user_path(post.user) do %>
+                    <div>
+                      <%= image_tag post.user.get_profile_image(100,100) %>
+                    </div>
+                    <div class="text-dark">
+                      <%= post.user.name %>
+                    </div>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+
+        <!--タグで検索する場合-->
+        <% elsif @range == 'Tag' %>
+          <tbody>
+            <% @tags.each do |tag| %>
+              <% tag.posts.each do |tag_post| %>
+                <tr>
+                  <td class="align-middle">
+                    <div>
+                      <%= link_to post_path(tag_post.id) do %>
+                        <!--投稿画像の一つ目のみ表示させる-->
+                        <%= image_tag tag_post.get_image[0], size: "200x150" %>
+                      <% end %>
+                    </div>
+                  </td>
+                  <td class="align-middle">
+                    <div>
+                      <%= link_to post_path(tag_post.id), class: "text-dark" do %>
+                        <%= tag_post.restaurant_name %>
+                      <% end %>
+                    </div>
+                    <div>
+                      <p>投稿日：<%= tag_post.created_at.strftime('%Y/%m/%d') %></p>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <%= link_to user_path(tag_post.user) do %>
+                    <div>
+                      <%= image_tag tag_post.user.get_profile_image(100,100) %>
+                    </div>
+                    <div class="text-dark">
+                      <%= tag_post.user.name %>
+                    </div>
+                  <% end %>
+                  </td>
+                  <td class="align-middle text-center">
+                    <% if user_signed_in? %>
+                      <div id="follow_<%= tag_post.user.id %>">
+                        <%= render 'user/relationships/follow_button', user: tag_post.user %>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>

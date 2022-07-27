@@ -1,0 +1,33 @@
+<div class="row">
+  <% posts.each do |post| %>
+
+    <%= render 'user/posts/restaurant_info', post: post %>
+
+    <div class="text-center col-3">
+      <%= image_tag post.get_image[0], size: "250x200" %>
+      <%= render 'user/posts/evaluation', post: post %>
+    </div>
+
+    <div class="border text-left text-break col-9">
+      <!--改行/スペースをビューに反映させる-->
+      <%=safe_join(post.description.split("\n"),tag(:br))%>
+    </div>
+
+    <div class="text-center mt-3 col-2 border-bottom">
+      <%= render 'user/posts/icon_and_name', post: post, user: user %>
+    </div>
+
+    <div class="text-right mt-3 col-10 border-bottom">
+      <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+      <%= "#{post.post_comments.count} コメント" %>
+      <%= "#{post.favorites.count}いいね" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-5"></div>
+  <div class="col-6 text-right">
+    <h5><%= paginate posts %></h5>
+  </div>
+</div>

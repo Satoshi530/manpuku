@@ -1,0 +1,12 @@
+<div class="row border-bottom">
+  <div class="col-5 text-right my-4">
+    <h6>ユーザー名、店名、タグから探す</h6>
+  </div>
+  <div class="search_form col-7 my-3">
+    <%= form_with url: searches_path, local: true, method: :get do |f| %>
+      <%= f.text_field :word, placeholder: "例　ハンバーガー", size: 40 %>
+      <%= f.select :range, options_for_select([['ユーザー','User'], ['店名','Post'], ['タグ','Tag']]) %>
+      <%= f.submit "検索", class: "btn btn-info" %>
+    <% end %>
+  </div>
+</div>

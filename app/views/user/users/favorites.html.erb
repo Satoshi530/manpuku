@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3 text-center font-weight-bold">
+      <h4>ブックマーク</h4>
+    </div>
+
+    <div>
+      <% if @posts.exists? %>
+        <%= render 'user/posts/index', posts: @posts, user: @user %>
+      <% else %>
+        <!--ユーザーがいいねをした投稿がない場合-->
+        <p>いいねした投稿はありません</p>
+      <% end %>
+    </div>
+
+  </div>
+</div>

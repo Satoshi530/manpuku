@@ -1,0 +1,39 @@
+<div class="container">
+  
+  <div class="row">
+    <div class="heading mt-3">
+      <h4 class="text-center">タグ一覧</h4>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-3">
+    </div>
+    
+    <div class="col-6">
+      <table class="table border-bottom">
+        <thead>
+          <tr class="table-active">
+            <th class="col-3">タグ名</th>
+            <th class="col-3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tags.each do |tag| %>
+            <tr>
+              <td class="col-3">
+                <%= tag.name %>
+              </td>
+              <td class="col-3 text-right">
+                <%= link_to "編集する", edit_admin_tag_path(tag), class: "btn btn-success" %>
+                <%= link_to "削除する", admin_tag_path(tag), method: :delete, class: "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+  
+</div>
