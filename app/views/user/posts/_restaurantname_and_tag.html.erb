@@ -1,19 +1,27 @@
 <% if admin_signed_in? %>
-  <%= link_to admin_post_path(post.id) do %>
-    <h4 class="font-weight-bold text-dark"><%= post.restaurant_name %></h4>
-  <% end %>
-  <% post.tags.each do |tag|%>
-    <%= link_to tag.name, admin_tags_path, class: "font-weight-bold text-dark" %>
-  <% end %>
-  <%= post.info %>
-
+  <div class="text-left mt-3 col-4">
+    <%= link_to admin_post_path(post.id) do %>
+      <h4 class="font-weight-bold text-dark"><%= post.restaurant_name %></h4>
+    <% end %>
+    <% post.tags.each do |tag|%>
+      <%= link_to tag.name, admin_tags_path, class: "font-weight-bold text-dark" %>
+    <% end %>
+  </div>
+  <div class="text-right mt-3 col-8">
+    <%= post.info %>
+  </div>
 
 <% else %>
-  <%= link_to post_path(post.id) do %>
-    <h4 class="font-weight-bold text-dark"><%= post.restaurant_name %></h4>
-  <% end %>
-  <% post.tags.each do |tag|%>
-    <%= link_to tag.name, searches_path(word: tag.name, range:"Tag"), class: "text-dark" %>
-  <% end %>
-  <%= post.info %>
+  <div class="text-left mt-3 col-4">
+    <%= link_to post_path(post.id) do %>
+      <h4 class="font-weight-bold text-dark"><%= post.restaurant_name %></h4>
+    <% end %>
+    <% post.tags.each do |tag|%>
+      <%= link_to tag.name, searches_path(word: tag.name, range:"Tag"), class: "text-dark" %>
+    <% end %>
+  </div>
+  <div class="text-right mt-3 col-8">
+    <%= post.info %>
+  </div>
+
 <% end %>
