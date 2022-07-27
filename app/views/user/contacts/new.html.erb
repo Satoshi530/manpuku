@@ -3,7 +3,7 @@
     <div class="col-12 mt-3">
       <h4>お問合せフォーム</h4>
       <%= render 'layouts/error', model: @contact %>
-      
+
       <%= form_with model: @contact, url: confirm_contacts_path do |f| %>
         <table class="table table-hover">
           <tr>
@@ -45,7 +45,7 @@
           </tr>
         </table>
       <% end %>
-      
+
     </div>
   </div>
 </div>

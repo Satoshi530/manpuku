@@ -1,3 +1,4 @@
+<!--管理者とユーザーで遷移先を分岐させる-->
 <% if admin_signed_in? %>
   <%= link_to admin_user_path(post.user) do %>
     <div>

@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <div class="col-12 text-right mt-3">
       <% if @post.user == current_user %>
@@ -9,9 +10,10 @@
   </div>
 
   <div class="row">
-    <%= render 'restaurantname_and_tag', post: @post %>
+    <%= render 'restaurant_info', post: @post %>
 
     <div class="col-3 text-center">
+      <!--投稿画像の一つ目のみ表示させる-->
       <%= image_tag @post.get_image[0], size: "250x200" %><br>
       <%= link_to "写真を見る", images_post_path(@post), class:"font-weight-bold text-dark" %>
       <%= render 'evaluation', post: @post %>
@@ -64,5 +66,7 @@
         <%= render 'user/post_comments/comments', post: @post %>
       </div>
     </div>
+
   </div>
+
 </div>
