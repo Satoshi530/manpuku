@@ -37,5 +37,18 @@ DMM WEBCAMP PF制作フェイズで作成したサービスです。
 * お店の名前で検索できる
 
 ## 設計書
+* ER図
+https://app.diagrams.net/#G1mKYAUNaoJB7QHJOIjwK1SyMUnsQ6P6j0
+* 遷移図
+https://app.diagrams.net/#G1VR_5qKB90HsnJbgwUq0hZtkBH4CbbtO-
+* テーブル定義書
+https://docs.google.com/spreadsheets/d/1Rt2i884ZSASbJojxC7GtnoYK0Ih-IR8Up3o6n7Fk1EU/edit#gid=307366565
+* 詳細設計
+https://docs.google.com/spreadsheets/d/1u1vQcVMt3UBcZm7pJhhZL-6_wBytTO6Iatloeg4zc8M/edit#gid=2133469642
+* テスト仕様書
+https://docs.google.com/spreadsheets/d/1I3fzVChLMhoA9S-5fc8Z1K9fkKXX0uU0/edit#gid=905881908
+
 
 ## 使用素材
+* photoAC 写真のフリー素材サイト
+https://www.photo-ac.com/
