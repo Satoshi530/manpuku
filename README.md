@@ -52,3 +52,5 @@ https://docs.google.com/spreadsheets/d/1I3fzVChLMhoA9S-5fc8Z1K9fkKXX0uU0/edit#gi
 ## 使用素材
 * photoAC 写真のフリー素材サイト
 https://www.photo-ac.com/
+* かわいいフリー素材集　いらすとや
+https://www.irasutoya.com/
