@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
   validates :user_id, presence: true
   validates :restaurant_name, presence: true
-  validates :description, presence: true,length:{maximum:200}
+  validates :description, presence: true,length:{maximum:500}
   validates :rate, presence: true
 
   def get_image
