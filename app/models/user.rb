@@ -45,6 +45,7 @@ class User < ApplicationRecord
 
   def self.looks(word)
     if word != ""
+      #where$LIKEで曖昧検索が可能
       User.where('name LIKE ?', '%'+word+'%')
     else
       User.all
