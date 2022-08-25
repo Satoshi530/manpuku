@@ -28,8 +28,10 @@ class User::SessionsController < Devise::SessionsController
 
   # 退会済みの場合は同じアカウントでは利用できない。
   def reject_user
+    #ログイン時に入力されたemailにがいとうするユーザーがいるか確認
     @user = User.find_by(name: params[:user][:email])
     if @user
+      #入力されたパスワードが正しいか確認して、モデルに記述したactive_for_authenticationがfalseであれば退会済みユーザーと断定する
       if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
         flash[:notice] = "退会済みです。再度新規登録を行なってください。"
         redirect_to new_user_registration

@@ -46,6 +46,7 @@ class Post < ApplicationRecord
 
   def self.looks(word)
     if word != ""
+      #where$LIKEで曖昧検索が可能
       Post.where('restaurant_name LIKE ?', '%'+word+'%')
     else
       Post.all
